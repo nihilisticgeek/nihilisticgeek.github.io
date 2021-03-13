@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap');
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            width: 100vw;
+            color: rgb(255, 255, 255);
+            background-color: tomato;
+            font-family: 'Old Standard TT', serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        p {
+            font-size: 22vw;
+            line-height: 0.15;
+            font-weight: bold;
+            padding: 0;
+            margin-top: 10vw;
+            margin-bottom: 12vw;
+        }
+
+        div {
+            margin: 0;
+        }
+
+        span,
+        span#hours,
+        span#minutes,
+        span#seconds {
+            font-size: 12vw;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 8vw;
+            padding: 0;
+            margin: 5vw 0 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id='title'>O'level Countdown</h1>
+    <div class="countdown-wrapper">
+
+        <p id="days"></p>
+        <div>
+            <span id="hours"></span>
+            <span>:</span>
+            <span id="minutes"></span>
+            <span>:</span>
+            <span id="seconds"></span>
+
+        </div>
+
+    </div>
+
+    <script>
+        //function to shuffle the array
+        let shuffle = (array) => {
+            let counter = array.length;
+            while (counter > 0) {
+                let index = Math.floor(Math.random() * counter);
+                counter--;
+                let temp = array[counter];
+                array[counter] = array[index];
+                array[index] = temp;
+            }
+
+            return array;
+        }
+
+
+        //function to change the background to selected collors
+        let setRandomColor = () => {
+            let listOfColors = ["#8942a8", "#f74841", "#4db6ac", "#3592e7", "#33c73a", "#8942a8", "#3592e7", "#f74841", "#3592e7", "#ff6347", "#1f1f1f", "#3f51b5"]
+            let randomColor = shuffle(listOfColors);
+            for (i = 0; i <= listOfColors.length; i++) {
+                document.querySelector('body').style.backgroundColor = `${randomColor[i]}`;
+            }
+
+        }
+        //?duedate=2021-05-01T09:00&title=O'Level Countdown
+        let stringy = window.location.search;
+        let urlparams = new URLSearchParams(stringy);
+        let urlobjects = Object.fromEntries(urlparams)
+        if ('duedate' in urlobjects) {
+            let dueDateTime = urlparams.get('duedate')
+            var countDownDate = new Date(dueDateTime).getTime();
+            document.getElementById('title').innerHTML = urlparams.get('title')
+        } else {
+            var countDownDate = new Date('1 May, 2021 09:00:00').getTime();
+            
+        }
+
+        //let countDownDate = new Date('1 May, 2021 09:00:00').getTime();
+
+
+
+        let x = setInterval(() => {
+
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            //display the times to html
+            document.getElementById('days').innerHTML = `${days.toString().padStart(2, "0")} days`;
+            document.getElementById('minutes').innerHTML = `${minutes.toString().padStart(2, "0")}`;
+            document.getElementById('seconds').innerHTML = `${seconds.toString().padStart(2, "0")}`;
+            document.getElementById('hours').innerHTML = `${hours.toString().padStart(2, "0")}`;
+
+
+        }, 1000);
+
+        setInterval(() => {
+            let now = new Date();
+            let millisecondsTillNine = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0, 0) - now;
+            if (millisecondsTillNine < 0) {
+                millisecondsTillNine += 86400000; // it's after 09am, try 09am tomorrow.
+            }
+            // console.log(millisecondsTillNine)
+            setTimeout(setRandomColor, millisecondsTillNine);
+        }, 1000)
+
+
+
+
+        // change the background colors everyday at 09am.
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
