@@ -52,7 +52,7 @@
 </head>
 
 <body>
-    <h1 id='title'>O'level Countdown</h1>
+    <h1 id='title'>Term 2 Exams</h1>
     <div class="countdown-wrapper">
 
         <p id="days"></p>
@@ -101,7 +101,7 @@
             var countDownDate = new Date(dueDateTime).getTime();
             document.getElementById('title').innerHTML = urlparams.get('title')
         } else {
-            var countDownDate = new Date('2 May, 2021 09:00:00').getTime();
+            var countDownDate = new Date('25 May, 2021 07:15:00').getTime();
             
         }
 
@@ -131,7 +131,7 @@
 
         setInterval(() => {
             let now = new Date();
-            let millisecondsTillNine = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0, 0) - now;
+            let millisecondsTillNine = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 7, 0, 0, 0) - now;
             if (millisecondsTillNine < 0) {
                 millisecondsTillNine += 86400000; // it's after 09am, try 09am tomorrow.
             }
