@@ -92,7 +92,7 @@
             }
 
         }
-        //?duedate=2021-05-01T09:00&title=O'Level Countdown
+        //?duedate=2025-05-01T09:00&title=O'Level Countdown
         let stringy = window.location.search;
         let urlparams = new URLSearchParams(stringy);
         let urlobjects = Object.fromEntries(urlparams)
@@ -101,7 +101,7 @@
             var countDownDate = new Date(dueDateTime).getTime();
             document.getElementById('title').innerHTML = urlparams.get('title')
         } else {
-            var countDownDate = new Date('25 May, 2021 07:15:00').getTime();
+            var countDownDate = new Date('25 May, 2025 07:15:00').getTime();
             
         }
 
