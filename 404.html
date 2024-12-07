@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1E1E2F;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: 900;
+      color: #FF416C;
+      animation: shake 0.5s infinite alternate;
+    }
+
+    .error-message {
+      font-size: 24px;
+      color: #F1F1F1;
+      margin-top: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .home-button {
+      margin-top: 40px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #FF416C;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: #FF6A95;
+    }
+
+    .hover-animate {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .hover-animate:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(-10px); }
+      100% { transform: translateX(10px); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="error-code animate__animated animate__fadeInDown hover-animate">
+      404
+    </div>
+    <div class="error-message">
+      Oops! Looks like you're lost.
+    </div>
+    <button onclick="goHome()" class="home-button hover-animate">
+      Go to Home
+    </button>
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = '/';
+    }
+  </script>
+
+</body>
+</html>
